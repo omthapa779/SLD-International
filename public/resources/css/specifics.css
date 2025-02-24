@@ -1,0 +1,181 @@
+/* specifics.css */
+:root{
+    --primary_font: Montserrat;
+    --text_color: rgb(7, 7, 7);
+    --green_color: #669c15;
+    --blue_color: #0b419b;
+}
+.navbar{
+    height: 12vh;
+}
+.loading_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f8ff 100%);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.8s ease;
+}
+
+.loading_logo {
+    width: 15vw;
+    height: auto;
+    margin-bottom: 2vh;
+    transform: translateY(2vh);
+    opacity: 0;
+    animation: logoReveal 1s ease forwards;
+}
+
+.loading_bar_container {
+    width: 100%;
+    height: 0.4vh;
+    background: rgba(11, 65, 155, 0.1);
+    border-radius: 1vh;
+    margin-top: 2vh;
+    overflow: hidden;
+}
+
+.loading_bar {
+    width: 0%;
+    height: 100%;
+    background: var(--blue_color);
+    border-radius: 1vh;
+    transition: width 0.3s ease-in-out;
+}
+
+.loading_text {
+    color: var(--blue_color);
+    margin-top: 1vh;
+    opacity: 0.8;
+}
+
+/* Enhanced Rise Up Animations */
+.logo_holder,
+.nav_links a,
+.hero_section h1,
+.hero_section h3,
+.button_holder {
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity, filter;
+}
+
+/* Element-specific styles */
+.logo_holder {
+    transform: translateY(5vh);
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.nav_links a {
+    display: inline-block;
+    transform: translateY(5vh);
+    opacity: 0;
+    filter: blur(10px);
+    position: relative;
+}
+
+.hero_section h1,
+.hero_section h3,
+.button_holder {
+    transform: translateY(5vh);
+    opacity: 0;
+    filter: blur(10px);
+}
+
+/* Hover Effects */
+.nav_links a::before {
+    content: '';
+    position: absolute;
+    bottom: -0.5vh;
+    left: 0;
+    width: 100%;
+    height: 0.2vh;
+    background: var(--blue_color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: right;
+}
+
+.nav_links a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav_links a:hover {
+    color: var(--blue_color);
+}
+
+/* Button hover effects */
+.button_holder {
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button_holder a {
+    transition: all 0.3s ease;
+}
+
+.button_holder a:hover {
+    transform: translateY(-0.5vh);
+    box-shadow: 0 0.5vh 1.5vh rgba(11, 65, 155, 0.2);
+}
+
+.button_holder a.secondary_button:hover {
+    background-color: var(--green_color);
+    color: white;
+}
+
+.hero_main_text{
+    width: 45vw;
+}
+.hero_subtitle{
+    width: 50vw;
+}
+@keyframes logoReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(2vh);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.govt_lic {
+    background-color: var(--blue_color);
+}
+.open_menu{
+    display: none;
+    border: 0.4vw solid var(--green_color);
+    outline: none;
+    background: none;
+    padding: 0.5vh 1.5vw;
+    border-radius: 50%;
+}
+@media (max-width: 999px){
+    .navbar{
+        height: 10vh;
+    }
+    .hero_text{
+        width: 90%;
+    }
+    .button_holder{
+        flex-direction: column;
+    }
+    .navbar a{
+        display: none;
+    }
+    .open_menu {
+        display: block;
+    }
+}
+@media (max-width: 699px){
+
+}

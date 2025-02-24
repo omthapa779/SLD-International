@@ -1,0 +1,250 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--primary_font);
+}
+
+:root{
+    --primary_font: Montserrat;
+    --secondary_font: "Josefin Sans";
+
+    --text_color: rgb(7, 7, 7);
+    --green_color: #669c15;
+    --blue_color: #0b419b;
+    --alt_text: white;
+    --gray_color: rgb(96, 96, 96);
+}
+
+/* texts */
+h1{
+    font-size: 3.2vw;
+}
+h2{
+    font-size: 1.7vw;
+}
+h3{
+    font-size: 1.5vw;
+}
+h4{
+    font-size: 1.25vw;
+}
+h5{
+    font-size: 1vw;
+}
+a{
+    color: var(--text_color);
+    text-decoration: none;
+}
+
+/* fonts */
+.secondary_font{
+    font-family: var(--secondary_font);
+}    
+.alt_text{
+    color: var(--alt_text);
+}
+.secondary_text{
+    color: var(--green_color);
+}
+.gray_cl{
+    color: var(--gray_color);
+}
+
+/* widths */
+.w_100{
+    width: 100%;
+}
+.w_30vw{
+    width: 30vw;
+}
+.w_40vw{
+    width: 40vw;
+}
+.w_45vw{
+    width: 45vw;
+}
+.w_50vw{
+    width: 50vw;
+}
+
+/* heightss */
+.h_fc{
+    height: fit-content;
+}
+.h_5vh{
+    height: 5vh;
+}
+.h_10vh{
+    height: 10vh;
+}
+.h_12vh{
+    height: 12vh;
+}
+.h_15vh{
+    height: 15vh;
+}
+.h_70vh{
+    height: 70dvh;
+}
+.h_100{
+    height: 100%;
+}
+
+/* flexs */
+.flex{
+    display: flex;
+}
+.flex_cl{
+    display: flex;
+    flex-direction: column;
+}
+.flex_c{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* paddings */
+.padding_s10{
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+.padding_s7{
+    padding-right: 7vw;
+    padding-left: 7vw;
+}
+
+/* margins */
+.mtop_5{
+    margin-top: 5vh;
+}
+.mtop_2s{
+    margin-top: 2.5vh;
+}
+
+/* aligns */
+.align_c{
+    align-items: center;
+}
+
+/* justify */
+.justify_c{
+    justify-content: center;
+}
+.justify_sb{
+    justify-content: space-between;
+}
+
+/* gaps */
+.gap_xs{
+    gap: 1vw;
+}
+.gap_s{
+    gap: 2.5vw;
+}
+
+/* line heights */
+.line_h70{
+    line-height: 70%;
+}
+
+/* font weights */
+.font_w500{
+    font-weight: 500;
+}
+
+/* opacity */
+.opacity_0 {
+    opacity: 0;
+}
+.opacity_1 {
+    opacity: 1;
+}
+
+/* transition */
+.transition_all {
+    transition: all 0.5s ease;
+}
+
+/* postions */
+.pos_rel {
+    position: relative;
+}
+.pos_abs {
+    position: absolute;
+}
+.pos_fixed{
+    position: fixed;
+}
+
+/* indexs */
+.z_1000 {
+    z-index: 1000;
+}
+
+/* texts align center */
+.text_ac{
+    text-align: center;
+}
+
+/* buttons */
+.primary_button{
+    background-color: var(--blue_color);
+    padding: 1.5vh 2vw;
+    border-radius: 0.7vw;
+}
+.secondary_button{
+    background: none;
+    border: 0.2vw solid var(--green_color);
+}
+
+@media (max-width: 999px){
+    h1{
+        font-size: 6vw;
+    }
+    h2{
+        font-size: 4.5vw;
+    }
+    h3{
+        font-size: 2.7vw;
+    }
+    h4{
+        font-size: 2.5vw;
+    }
+    h5{
+        font-size: 2vw;
+    }
+    .gap_xs{
+        gap: 2vw;
+    }
+    .primary_button{
+        width: 80%;
+        text-align: center;
+    }
+}
+@media (max-width: 699px){
+    h1{
+        font-size: 8vw;
+    }
+    h2{
+        font-size: 6vw;
+    }
+    h3{
+        font-size: 4.5vw;
+    }
+    h4{
+        font-size: 3.7vw;
+    }
+    h5{
+        font-size: 3vw;
+    }
+    .gap_xs{
+        gap: 2.5vw;
+    } 
+    .primary_button{
+        width: 100%;
+    }
+}
