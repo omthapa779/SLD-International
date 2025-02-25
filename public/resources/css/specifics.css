@@ -159,6 +159,155 @@
     padding: 0.5vh 1.5vw;
     border-radius: 50%;
 }
+
+/* destinations hero */
+.destinations-container {
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+    cursor: grab;
+  }
+  
+  .destinations-container:active {
+    cursor: grabbing;
+  }
+  
+  .destinations-track {
+    display: flex;
+    height: 100%;
+    position: absolute;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .destination-card {
+    position: relative;
+    min-width: 23vw;
+    height: 100%;
+    margin: 0 1vw;
+    border-radius: 1vw;
+    overflow: hidden;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+  }
+  
+  .destination-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  
+  .destination-card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5vh;
+    transition: height 0.4s ease;
+  }
+  
+  .destination-card .country-name {
+    color: white;
+    font-weight: 500;
+    margin: 0;
+    font-family: var(--secondary_font);
+    transform: translateY(0);
+    transition: transform 0.4s ease;
+  }
+  
+  /* Hover Effects */
+  .destination-card:hover {
+    transform: translateY(-0.5vh);
+    box-shadow: 0 1vh 3vh rgba(0, 0, 0, 0.2);
+  }
+  
+  .destination-card:hover img {
+    transform: scale(1.1);
+  }
+  
+  .destination-card:hover .overlay {
+    height: 70%;
+  }
+  
+  .destination-card:hover .country-name {
+    transform: translateY(-1vh);
+  }
+
+  /* stats home */
+  .stats_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2vw;
+    width: 100%;
+}
+
+.stats_box {
+    border: 0.2vw solid var(--green_color);
+    border-radius: 1vw;
+    padding: 3vh 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1vw;
+    min-height: 20vh;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats_box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stats_box h2 {
+    font-weight: 700;
+    color: var(--blue_color);
+    margin-bottom: 1vh;
+}
+
+.stats_box p {
+    color: var(--gray_color);
+    font-family: var(--secondary_font);
+}
+
+.stats_box.full {
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vw;
+    padding: 2vh 2vw;
+}
+
+.counter {
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: var(--blue_color);
+}
+
+/* Make sure the stats boxes also have the reveal animation */
+.stats_box {
+    opacity: 0;
+    transform: translateY(5vh);
+    filter: blur(0.7vw);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
 @media (max-width: 999px){
     .navbar{
         height: 10vh;
@@ -175,7 +324,14 @@
     .open_menu {
         display: block;
     }
+    .destination-card{
+        width: 45vw;
+    }
+    .destination-container{
+        height: 20vh;
+    }
 }
 @media (max-width: 699px){
-
+    
+    
 }
