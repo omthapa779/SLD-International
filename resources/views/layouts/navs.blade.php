@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('./resources/css/specifics.css') }}">
     <link rel="stylesheet" href="{{ asset('./resources/css/style.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
 </head>
 <body>
@@ -45,4 +46,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script type="module" src="{{ asset('./resources/js/logic.js') }}"></script>
+<script src="{{ asset('./resources/js/contact-form.js') }}"></script>
 </html>

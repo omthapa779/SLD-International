@@ -1,4 +1,223 @@
 // logic.js
+//Recruitment Process Circle with better responsiveness
+function initRecruitmentProcess() {
+    const processSteps = [
+        { id: 1, title: "DOFE", description: "DOFE Approval", icon: "ri-government-line" },
+        { id: 2, title: "Sourcing", description: "Advertisement, interview & selection", icon: "ri-search-line" },
+        { id: 3, title: "Medicals", description: "Medicals & Documentations", icon: "ri-medicine-bottle-line" },
+        { id: 4, title: "VISA", description: "VISA Processing", icon: "ri-passport-line" },
+        { id: 5, title: "Orientation", description: "Welfare & Orientation", icon: "ri-group-line" },
+        { id: 6, title: "Final Labour", description: "Final Labour Approval : DOFE", icon: "ri-file-list-3-line" },
+        { id: 7, title: "Pre-Departure", description: "Pre-Departure Orientation", icon: "ri-flight-takeoff-line" },
+        { id: 8, title: "Departure", description: "Departure & Clearance", icon: "ri-plane-line" },
+        { id: 9, title: "Feedback", description: "Feedback", icon: "ri-feedback-line" }
+    ];
+    
+    const processCircle = document.getElementById('processCircle');
+    const processTitle = document.querySelector('.process_title');
+    const processDescription = document.querySelector('.process_description');
+    
+    let activeIndex = 0;
+    let previousIndex = 0;
+    let autoplayInterval;
+    
+    // Create SVG path for the circle
+    function createCirclePath() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("class", "process_path");
+        svg.setAttribute("viewBox", "0 0 500 500");
+        
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", "250");
+        circle.setAttribute("cy", "250");
+        circle.setAttribute("r", "230");
+        
+        svg.appendChild(circle);
+        processCircle.appendChild(svg);
+    }
+    
+    // Create process items and position them around the circle
+    function createProcessItems() {
+        const totalSteps = processSteps.length;
+        
+        processSteps.forEach((step, index) => {
+            // Calculate position on the circle
+            const angle = (index * (2 * Math.PI / totalSteps)) - Math.PI/2; // Start from top
+            
+            // Create item element
+            const itemElement = document.createElement('div');
+            itemElement.className = 'process_item';
+            itemElement.dataset.index = index;
+            itemElement.dataset.angle = angle;
+            itemElement.innerHTML = `
+                <i class="${step.icon}"></i>
+                <span>${String(step.id).padStart(2, '0')}</span>
+            `;
+            
+            // Add click event
+            itemElement.addEventListener('click', () => {
+                const clickedIndex = parseInt(itemElement.dataset.index);
+                animateToStep(clickedIndex);
+                clearInterval(autoplayInterval);
+                autoplayInterval = setInterval(nextStep, 4000);
+            });
+            
+            processCircle.appendChild(itemElement);
+        });
+    }
+    
+    // Position items around the circle - IMPROVED FOR RESPONSIVENESS
+    // Position items around the circle - IMPROVED FOR RESPONSIVENESS
+function positionItems() {
+    const items = document.querySelectorAll('.process_item');
+    const circleWidth = processCircle.offsetWidth;
+    const circleHeight = processCircle.offsetHeight;
+    
+    // Use the smaller of width/height to ensure circle fits
+    const circleSize = Math.min(circleWidth, circleHeight);
+    
+    // Dynamic radius based on actual circle size (46% of radius)
+    const radius = circleSize * 0.46;
+    
+    items.forEach(item => {
+        const angle = parseFloat(item.dataset.angle);
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        
+        // Center the item at calculated position
+        // Use percentage positioning instead of calc with px
+        const centerX = 50; // percent
+        const centerY = 50; // percent
+        
+        const xPosition = centerX + (x / circleSize * 100);
+        const yPosition = centerY + (y / circleSize * 100);
+        
+        item.style.left = `${xPosition}%`;
+        item.style.top = `${yPosition}%`;
+    });
+}
+    
+    // Animate transition to a specific step
+    function animateToStep(targetIndex) {
+        // Store previous index
+        previousIndex = activeIndex;
+        activeIndex = targetIndex;
+        
+        // Determine direction (clockwise or counterclockwise)
+        const totalSteps = processSteps.length;
+        let clockwiseDistance = (activeIndex - previousIndex + totalSteps) % totalSteps;
+        let counterclockwiseDistance = (previousIndex - activeIndex + totalSteps) % totalSteps;
+        
+        // Choose the shortest path
+        const goClockwise = clockwiseDistance <= counterclockwiseDistance;
+        
+        // Get all steps
+        const items = document.querySelectorAll('.process_item');
+        
+        // First, remove active class from all
+        items.forEach(item => item.classList.remove('active', 'highlight'));
+        
+        // Set active class for target
+        items[activeIndex].classList.add('active');
+        
+        // Add animation classes for sequential effect
+        if (previousIndex !== activeIndex) {
+            const animationDuration = 400; // in ms
+            const stepDelay = 150; // in ms
+            
+            if (goClockwise) {
+                let currentIndex = previousIndex;
+                let delay = 0;
+                
+                while (currentIndex !== activeIndex) {
+                    currentIndex = (currentIndex + 1) % totalSteps;
+                    
+                    setTimeout((index) => {
+                        items[index].classList.add('highlight');
+                        setTimeout(() => {
+                            items[index].classList.remove('highlight');
+                        }, animationDuration);
+                    }, delay, currentIndex);
+                    
+                    delay += stepDelay;
+                }
+            } else {
+                let currentIndex = previousIndex;
+                let delay = 0;
+                
+                while (currentIndex !== activeIndex) {
+                    currentIndex = (currentIndex - 1 + totalSteps) % totalSteps;
+                    
+                    setTimeout((index) => {
+                        items[index].classList.add('highlight');
+                        setTimeout(() => {
+                            items[index].classList.remove('highlight');
+                        }, animationDuration);
+                    }, delay, currentIndex);
+                    
+                    delay += stepDelay;
+                }
+            }
+        }
+        
+        // Update center content with longer titles handling
+        const step = processSteps[activeIndex];
+        processTitle.textContent = `${String(step.id).padStart(2, '0')} ${step.title}`;
+        processDescription.textContent = step.description;
+        
+        // Handle text overflow for small screens
+        if (window.innerWidth <= 699) {
+            // If title is too long, reduce font size on mobile
+            const titleLength = processTitle.textContent.length;
+            if (titleLength > 15) {
+                processTitle.style.fontSize = "4vw";
+            } else {
+                processTitle.style.fontSize = ""; // Reset to default
+            }
+        } else {
+            processTitle.style.fontSize = ""; // Reset to default
+        }
+    }
+    
+    // Go to next step
+    function nextStep() {
+        const nextIndex = (activeIndex + 1) % processSteps.length;
+        animateToStep(nextIndex);
+    }
+    
+    // Initialize
+    function init() {
+        createCirclePath();
+        createProcessItems();
+        positionItems();
+        
+        // Set initial active step
+        animateToStep(0);
+        
+        // Start autoplay
+        autoplayInterval = setInterval(nextStep, 4000);
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            positionItems();
+            // Re-apply active state to update text size
+            animateToStep(activeIndex);
+        });
+        
+        // Intersection Observer for animation when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    processCircle.style.opacity = 1;
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(processCircle);
+    }
+    
+    init();
+}
 function initDestinationsCarousel() {
     // JSON data inline
     const destinationsData = {
@@ -383,11 +602,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup scroll reveal animations
     setupScrollRevealAnimations();
     
-    // Setup button hover effects
+    // Setup button hover effectss
     setupButtonHoverEffects();
     
     // Initialize destination carousel
     initDestinationsCarousel();
+    initRecruitmentProcess();
 });
 
 const lenis = new Lenis({
@@ -398,7 +618,7 @@ const lenis = new Lenis({
   smooth: true,
   mouseMultiplier: 1,
   smoothTouch: false,
-  touchMultiplier: 2,
+  touchMultiplier: 1,
   infinite: false,
 })
 
@@ -527,8 +747,8 @@ function setupScrollRevealAnimations() {
         '.about_us h3',
         '.about_us a',
         '.stats h1',
-        '.stats_box'
-        // Add more selectors for other sections you'll create later
+        '.stats_box', '.services h1', '.service_card',
+        '.recruitment_process h1', '.form_holder'
     ];
     
     // Add reveal-element class to all elements that need animation

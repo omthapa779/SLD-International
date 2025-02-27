@@ -238,25 +238,17 @@
     transform: translateY(-1vh);
   }
 
-  /* stats home */
+/* stats home */
   .stats_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 2vw;
-    width: 100%;
 }
 
 .stats_box {
     border: 0.2vw solid var(--green_color);
     border-radius: 1vw;
     padding: 3vh 2vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 1vw;
     min-height: 20vh;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -266,36 +258,19 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.stats_box h2 {
-    font-weight: 700;
-    color: var(--blue_color);
-    margin-bottom: 1vh;
-}
-
-.stats_box p {
-    color: var(--gray_color);
-    font-family: var(--secondary_font);
-}
-
 .stats_box.full {
     grid-column: 1 / span 2;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
     flex-wrap: wrap;
 }
 
 .stat_item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 0.5vw;
     padding: 2vh 2vw;
 }
 
 .counter {
-    font-size: 2.5vw;
     font-weight: 700;
     color: var(--blue_color);
 }
@@ -308,6 +283,221 @@
     transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
 }
 
+/* Service Card Hover Effects */
+.service_card {
+    background-position: center;
+    background-size: cover;
+    border-radius: 0.3vw;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+}
+
+.overlay {
+    background-color: black;
+    opacity: 40%;
+    z-index: 50;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.service_content {
+    z-index: 55;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Hover effects for service cards */
+.service_card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.service_card:hover .overlay {
+    background: linear-gradient(135deg, rgba(11, 65, 155, 0.8) 0%, rgba(102, 156, 21, 0.8) 100%);
+    opacity: 85%;
+}
+
+.service_card:hover .service_content {
+    transform: translateY(-5px);
+}
+
+.service_card .ri-arrow-right-up-line {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
+    position: relative;
+}
+
+.service_card .ri-arrow-right-line {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.service_card:hover .ri-arrow-right-up-line {
+    opacity: 0;
+    transform: rotate(90deg) translateX(15px);
+}
+
+.service_card:hover .ri-arrow-right-line {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Add a subtle background scale effect */
+.service_card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: inherit;
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 40;
+}
+
+.service_card:hover::before {
+    transform: scale(1.1);
+}
+
+/* New utility classes */
+.scale_hover {
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.scale_hover:hover {
+    transform: scale(1.05);
+}
+
+.gradient_overlay {
+    background: linear-gradient(135deg, rgba(11, 65, 155, 0.8) 0%, rgba(102, 156, 21, 0.8) 100%);
+}
+
+.cubic_bezier {
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+/* process */
+.process_container {
+    padding: 5vh 0;
+}
+
+.process_circle {
+    width: 30vw;
+    height: 30vw;
+    max-width: 30vw;
+    max-height: 30vw;
+    min-width: 30vw;
+    min-height: 30vw;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.process_center {
+    z-index: 10;
+    max-width: 25vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.process_title {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.process_item {
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    background: white;
+    border: 0.3vw solid var(--green_color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    transform: translate(-50%, -50%);
+}
+
+.process_item i {
+    font-size: 1.5vw;
+    margin-bottom: 0.5vh;
+}
+
+.process_item span {
+    font-size: 0.7vw;
+    font-weight: 600;
+}
+
+.process_item:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.process_item.active {
+    background-color: var(--green_color);
+    color: white;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.process_item.highlight {
+    background-color: var(--gray_color);
+    color: white;
+    transform: translate(-50%, -50%) scale(1.15);
+    transition: all 0.3s ease;
+}
+
+.process_path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.process_path circle {
+    fill: none;
+    stroke: var(--gray_color);
+    stroke-width: 2;
+    stroke-dasharray: 5, 5;
+    opacity: 0.6;
+}
+
+/* contacts */
+.input{
+    padding: 2vh 1vw;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    outline: none;
+}
+.input-group {
+    margin-bottom: 2vh;
+}
+
+textarea.input {
+    resize: vertical;
+    min-height: 15vh;
+}
+
+.form_holder button {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form_holder button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(11, 65, 155, 0.4);
+}
 @media (max-width: 999px){
     .navbar{
         height: 10vh;
@@ -330,8 +520,34 @@
     .destination-container{
         height: 20vh;
     }
+    .process_circle {
+        width: 80vw;
+        height: 80vw;
+        max-width: 80vw;
+        max-height: 80vw;
+        min-width: 80vw;
+        min-height: 80vw;
+    }
+    .process_item {
+        width: 14vw;
+        height: 10vh;
+    }
+    .process_item i {
+        font-size: 4vw;
+    }
+    .process_item span {
+        font-size: 3vw;
+    }
+    .contacts_holder {
+        flex-direction: column-reverse;
+    }
+    .form_holder .primary_button {
+        width: 100%;
+    }
 }
 @media (max-width: 699px){
-    
-    
+    .process_item {
+        width: 17vw;
+        height: 8vh;
+    }
 }
