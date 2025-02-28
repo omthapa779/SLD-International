@@ -89,6 +89,9 @@ a{
 .h_25vh{
     height: 25vh;
 }
+.h_30vh{
+    height: 30vh;
+}
 .h_35vh{
     height: 35vh;
 }
@@ -272,6 +275,9 @@ a{
     .primary_button{
         width: 80%;
         text-align: center;
+    }
+    .padding_ts{
+        padding-top: 7vh;
     }
 }
 @media (max-width: 699px){

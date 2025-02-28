@@ -1,4 +1,3 @@
-<!-- resources/views/emails/contact-form.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>

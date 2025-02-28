@@ -6,7 +6,7 @@
     <h3 class="font_w500 text_ac secondary_font  gray_cl hero_text hero_subtitle">From skilled professionals to dedicated workers, we connect you with the right manpower for success. Let’s build your dream team today!</h3>
     <div class="button_holder w_100 h_fc flex_c gap_xs">
         <a href="#" class="primary_button"><h4 class="alt_text">Company's Profile</h4></a>
-        <a href="#" class="primary_button secondary_button"><h4 class="">Get Started</h4></a>
+        <a href="/contact" class="primary_button secondary_button"><h4 class="">Get Started</h4></a>
     </div>
 </section>
 <section class="destinations w_100 pos_rel overflow_h">
@@ -18,7 +18,7 @@
         connecting Nepalese professionals across various sectors with international employers, particularly in the Gulf region and Malaysia. Officially registered with the Department of Foreign 
         Employment under the Government of Nepal's Ministry of Labor and Transport Management (License No. 672/063/064), S.L.D. International upholds a commitment 
         to ethical recruitment practices.</h3>
-    <a href="#" class="primary_button"><h4 class="alt_text">Learn More</h4></a>
+    <a href="/about" class="primary_button"><h4 class="alt_text">Learn More</h4></a>
 </section>
 
 <section class="stats w_100 padding_s10 flex_c flex_cl padding_ts ">
@@ -70,7 +70,7 @@
     <h1 class="title_border reveal-element">OUR SERVICES</h1>
 
     <div class="service_holder w_100 h_fc flex_cl gap_xs">
-        <a href="#"><div class="service_card w_100 h_25vh reveal-element pos_rel" style="background-image: url('./resources/images/services/overseas_recruitment.jpg')">
+        <a href="/services#overseas_recruitment"><div class="service_card w_100 h_25vh reveal-element pos_rel" style="background-image: url('./resources/images/services/overseas_recruitment.jpg')">
             <div class="overlay w_100 h_100 pos_abs"></div>
             <div class="service_content w_100 h_100 flex justify_sb pos_abs align_c padding_sxs">
                 <h1 class="mobile_hide alt_text">01</h1>
@@ -82,7 +82,7 @@
             </div>
         </div>
         </a>
-        <a href="#"><div class="service_card w_100 h_25vh reveal-element pos_rel" style="background-image: url('./resources/images/services/documentation.jpg')">
+        <a href="/services#documentation"><div class="service_card w_100 h_25vh reveal-element pos_rel" style="background-image: url('./resources/images/services/documentation.jpg')">
             <div class="overlay w_100 h_100 pos_abs"></div>
             <div class="service_content w_100 h_100 flex justify_sb pos_abs align_c padding_sxs">
                 <h1 class="mobile_hide alt_text">02</h1>
@@ -93,7 +93,7 @@
                 </h1>
             </div>
         </div></a>
-        <a href="#"><div class="service_card w_100 h_25vh reveal-element pos_rel" style="background-image: url('./resources/images/services/deployment.jpg')">
+        <a href="/services#deployment"><div class="service_card w_100 h_25vh reveal-element pos_rel" style="background-image: url('./resources/images/services/deployment.jpg')">
             <div class="overlay w_100 h_100 pos_abs"></div>
             <div class="service_content w_100 h_100 flex justify_sb pos_abs align_c padding_sxs">
                 <h1 class="mobile_hide alt_text">03</h1>

@@ -1,4 +1,57 @@
 // logic.js
+
+// Back to top button functionality
+function initBackToTop() {
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Footer links hover animation with GSAP
+function initFooterAnimations() {
+    if (typeof gsap !== 'undefined') {
+        const footerLinks = document.querySelectorAll('.footer_link');
+        
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                gsap.to(link.querySelector('i'), {
+                    x: 5,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                gsap.to(link.querySelector('i'), {
+                    x: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+    }
+}
+
+// Initialize all footer functionalities
+function initFooter() {
+    initBackToTop();
+    initNewsletterForm();
+    initFooterAnimations();
+}
+
 //Recruitment Process Circle with better responsiveness
 function initRecruitmentProcess() {
     const processSteps = [
@@ -492,6 +545,72 @@ function initDestinationsCarousel() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const openMenuBtn = document.querySelector('.open_menu');
+    const closeMenuBtn = document.querySelector('.close_menu');
+    const mobileNav = document.querySelector('.mobile_nav');
+    
+    console.log("Mobile nav setup", {
+        openBtn: openMenuBtn, 
+        closeBtn: closeMenuBtn, 
+        nav: mobileNav
+    });
+    
+    // Open menu functionality
+    if (openMenuBtn && mobileNav) {
+        openMenuBtn.onclick = function() {
+            console.log("Open button clicked");
+            mobileNav.style.display = 'block';
+            mobileNav.style.opacity = '1';
+            mobileNav.style.visibility = 'visible';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        };
+    }
+    
+    // Close menu functionality
+    if (closeMenuBtn && mobileNav) {
+        closeMenuBtn.onclick = function() {
+            console.log("Close button clicked");
+            mobileNav.style.opacity = '0';
+            mobileNav.style.visibility = 'hidden';
+            document.body.style.overflow = ''; // Re-enable scrolling
+            
+            // Optional: Hide completely after transition
+            setTimeout(function() {
+                if (mobileNav.style.opacity === '0') {
+                    mobileNav.style.display = 'none';
+                }
+            }, 500); // Match your transition duration
+        };
+    }
+    
+    // Close when clicking on navigation links
+    const mobilenavLinks = document.querySelectorAll('.mobile_nav_link');
+    mobilenavLinks.forEach(function(link) {
+        link.onclick = function() {
+            mobileNav.style.opacity = '0';
+            mobileNav.style.visibility = 'hidden';
+            document.body.style.overflow = '';
+            
+            setTimeout(function() {
+                mobileNav.style.display = 'none';
+            }, 500);
+        };
+    });
+    
+    // Close when pressing ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileNav.style.opacity === '1') {
+            mobileNav.style.opacity = '0';
+            mobileNav.style.visibility = 'hidden';
+            document.body.style.overflow = '';
+            
+            setTimeout(function() {
+                mobileNav.style.display = 'none';
+            }, 500);
+        }
+    });
+
     // Select all elements that need animation
     const logoHolder = document.querySelector('.logo_holder');
     const navLinks = document.querySelectorAll('.nav_links a');
@@ -608,6 +727,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize destination carousel
     initDestinationsCarousel();
     initRecruitmentProcess();
+    initFooter();
+    initMobileNav();
 });
 
 const lenis = new Lenis({
@@ -748,7 +869,30 @@ function setupScrollRevealAnimations() {
         '.about_us a',
         '.stats h1',
         '.stats_box', '.services h1', '.service_card',
-        '.recruitment_process h1', '.form_holder'
+        '.recruitment_process h1', '.form_holder',
+         '.about_hero h1', '.about_hero h3', 
+        '.about_content h1', '.about_content h3', 
+        '.about_image', '.mission_image', '.mission_content h1',
+        '.mission_content h3', '.values_section h1', '.value_card',
+        '.founder_image', '.message_content h1', '.message_content h3',
+        '.founder_info', '.team h1', '.team h3', '.team_card',
+        '.countries_hero h1', '.countries_hero h3', '.countries_grid h1', '.country_card', '.contact h1', '.contact h3', '.contact .button_holder',
+        '.hero_service h1', 
+        '.hero_service h3', 
+        '.services_main h1', 
+        '.service_detail_card',
+        '.process_service h1',
+        '.process_step',
+        '.contact_service h1',
+        '.contact_service h3',
+        '.service_info_sidebar',
+        '.contact_info h1',
+        '.contact_item1',
+        '.contact h1',
+        '.contact h3',
+        '.cta_section h1',
+        '.cta_section h3',
+        '.cta_section .button_holder'
     ];
     
     // Add reveal-element class to all elements that need animation
